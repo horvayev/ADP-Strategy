@@ -6,8 +6,7 @@ import java.util.Map;
 /**
  * Created by Evzen on 30.10.2016.
  */
-public class SimpleStrategy implements CacheStrategy {
-    private int maxSize;
+public class SimpleStrategy extends CacheStrategy {
     private LinkedHashMap<Key, Value> store;
 
     public SimpleStrategy(int maxSize) {
