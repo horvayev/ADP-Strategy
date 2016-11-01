@@ -4,13 +4,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by Evzen on 30.10.2016.
+ * Created by Evzen on 02.11.2016.
  */
-public class SimpleStrategy extends CacheStrategy {
+public class FifoStrategy extends  CacheStrategy {
+
     private LinkedHashMap<Key, Value> store;
 
-    public SimpleStrategy(int maxSize) {
-        this.maxSize = maxSize;
+    public FifoStrategy(int maxSize) {
+        super(maxSize);
         store = new LinkedHashMap<>(maxSize);
     }
 
@@ -20,7 +21,7 @@ public class SimpleStrategy extends CacheStrategy {
             if(store.size() < maxSize) {
                 store.put(key, value);
             } else {
-                store.remove(store.keySet().stream().findFirst().get());
+                store.remove(store.keySet().iterator().next());
                 store.put(key, value);
             }
         }
